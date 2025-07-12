@@ -22,3 +22,13 @@ CREATE WEB FILE IN LOCAL
 
 9. Create simpe Webapp file and save it as index.html
 10. Create README.md file
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+11. ADD variables : Private_Key, PublicIP and username in the GitHub . Follow below steps
+    Go to repo -> settings -> secrets and variable -> Actions . Add Variables one by one
+12. Create directory path like this in your project folder. -->  .github/workflows/deploy.yaml
+13. Added EC2 instance details , Copy project files , add nginx server installation & server running steps in the deploy.yml file
+14. Go to Repo and click ACTIONS button
+15. Post completion , open browser and paste EC2 public IP 
+16. Your WebApp will be running successfully

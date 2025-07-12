@@ -9,24 +9,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    -name : Checkout code
-     uses: actions/checkout@v3
+      - name : Checkout code
+        uses: actions/checkout@v3
      
-     -name : Copy files to EC2
-      uses: appleboy/scp-actions@v0.1.4
-      with:
-        host: ${{ secrets.EC2_PUBLIC_IP }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: index.html
-        target: "opt/app"
+      - name : Copy files to EC2
+        uses: appleboy/scp-actions@v0.1.4
+        with:
+          host: ${{ secrets.EC2_PUBLIC_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: index.html
+          target: "opt/app"
        
-    -name: Deploy to nginx
-     uses: appleboy/ssh-action@v0.1.7
-     with:
-        host: ${{ secrets.EC2_PUBLIC_IP }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: | 
+      - name: Deploy to nginx
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_PUBLIC_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: | 
             sudo cp /opt/app/index.html /var/www/html/index.html
             sudo systemctl restart nginx
