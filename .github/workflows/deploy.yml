@@ -18,8 +18,8 @@ jobs:
           host: ${{ secrets.EC2_PUBLIC_IP }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: index.html
-          target: "opt/app"
+          source: "./index.html"
+          target: "/home/ubuntu/app"
        
       - name: Deploy to nginx
         uses: appleboy/ssh-action@v0.1.7
@@ -28,5 +28,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: | 
-            sudo cp /opt/app/index.html /var/www/html/index.html
+            sudo cp /home/ubuntu/index.html /var/www/html/index.html
             sudo systemctl restart nginx
